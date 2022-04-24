@@ -4,13 +4,24 @@ this is the flutter CRUD operation using SQFite (SQLITE) with bloc architecture
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+![image](https://user-images.githubusercontent.com/89571593/164978165-858dcd6d-2ecb-4253-be98-319d351a1eb9.png)
 
-A few resources to get you started if this is your first Flutter project:
+this is a index page
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![image](https://user-images.githubusercontent.com/89571593/164978308-4283dc39-e9da-4471-af09-6bad2b07ccc1.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+when user enter the specific data from list. it will go to update page
+
+![image](https://user-images.githubusercontent.com/89571593/164978392-9705eb89-12f0-4844-afa7-488dc92e120b.png)
+
+when user enter the '+' button in the index page, it will go to add page
+
+![image](https://user-images.githubusercontent.com/89571593/164978444-f5eb35fd-8bb3-4fc9-aacc-8fb286f89ff9.png)
+
+when user enter the view button in the index page, it will go to view page
+
+![image](https://user-images.githubusercontent.com/89571593/164978478-0c2bb769-9bee-4525-8f7f-1ef6aec7c839.png)
+
+when user enter the delete button in the index page, it will delete a specific data from sqlite.
+
+
