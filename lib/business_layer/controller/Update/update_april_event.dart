@@ -7,10 +7,12 @@ List<Object> get props => [];
 }
 
 class GetAprilData extends UpdateAprilEvent {
+  final int aprilId;
+  const GetAprilData(this.aprilId);
 }
 
 class UpdateAprilData extends UpdateAprilEvent {
   //add data
-  final int aprilId;
-  const UpdateAprilData(this.aprilId);
+  final AprilModel _aprilModel;
+  const UpdateAprilData(this._aprilModel);
 }

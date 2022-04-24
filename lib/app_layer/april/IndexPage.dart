@@ -4,6 +4,9 @@ import 'package:testaapril/app_layer/april/AddPage.dart';
 import 'package:testaapril/app_layer/april/UpdatePage.dart';
 import 'package:testaapril/business_layer/controller/Index/index_april_bloc.dart';
 
+import '../../business_layer/controller/Delete/delete_april_bloc.dart';
+import 'ViewPage.dart';
+
 class IndexAprilScreen extends StatefulWidget {
   const IndexAprilScreen({Key? key}) : super(key: key);
 
@@ -13,6 +16,7 @@ class IndexAprilScreen extends StatefulWidget {
 
 class _IndexAprilScreenState extends State<IndexAprilScreen> {
   final IndexAprilBloc _indexAprilBloc = IndexAprilBloc();
+  final DeleteAprilBloc _deleteAprilBloc = DeleteAprilBloc();
 
   //get data when initial this state
   @override
@@ -21,6 +25,12 @@ class _IndexAprilScreenState extends State<IndexAprilScreen> {
     super.initState();
   }
 
+  refresh()
+  {
+    setState(() {
+      initState();
+    });
+  }
 
   //refresh when pop
   onGoBack(dynamic value) {
@@ -53,8 +63,11 @@ class _IndexAprilScreenState extends State<IndexAprilScreen> {
         ),
         body: Container(
           margin: const EdgeInsets.all(8),
-          child: BlocProvider(
-              create: (_) => _indexAprilBloc,
+          child: MultiBlocProvider(
+              providers: [
+                BlocProvider<IndexAprilBloc>(create: (_) => _indexAprilBloc,),
+                BlocProvider<DeleteAprilBloc>(create: (_) => _deleteAprilBloc,),
+              ],
               child: BlocBuilder<IndexAprilBloc, IndexAprilState>(
                   builder: (context, state) {
                 if (state is IndexAprilInitial) {
@@ -62,7 +75,7 @@ class _IndexAprilScreenState extends State<IndexAprilScreen> {
                 } else if (state is IndexAprilLoading) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is IndexAprilLoad) {
-                  return _UI(context, state.listApril);
+                  return _UI(context, state.listApril,onGoBack,refresh,_deleteAprilBloc);
                 } else {
                   return const Center(child: CircularProgressIndicator());
                 }
@@ -74,7 +87,7 @@ class _IndexAprilScreenState extends State<IndexAprilScreen> {
 }
 
 //display list data
-Widget _UI(BuildContext context, state) {
+Widget _UI(BuildContext context, state,onGoBack,refresh,_deleteAprilBloc) {
   return ListView.builder(
       itemCount: state == null ? 0 : state.length,
       itemBuilder: (context, index) {
@@ -90,7 +103,7 @@ Widget _UI(BuildContext context, state) {
                         // "name": state[index].name.toString(),
                         // "day": state[index].day.toString(),
                       },
-                    )));
+                    ))).then(onGoBack);
           },
           child: Card(
             elevation: 5,
@@ -118,8 +131,39 @@ Widget _UI(BuildContext context, state) {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8, right: 8),
-                            child: Text(state[index].day.toString()),
-                          )
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blueAccent, // background
+                                onPrimary: Colors.white, // foreground
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const ViewPage(),
+                                        settings: RouteSettings(
+                                          arguments: {
+                                            "id": state[index].id.toString(),
+                                          },
+                                        ))).then(onGoBack);
+                              },
+                              child: const Text('View'),
+                            ),
+                          ),//view
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.red, // background
+                                onPrimary: Colors.white, // foreground
+                              ),
+                              onPressed: () {
+                                _deleteAprilBloc.add(DeleteAprilData(state[index].id));
+                                refresh();
+                              },
+                              child: const Text('Delete'),
+                            ),
+                          ),//delete
                         ],
                       ),
                     ),

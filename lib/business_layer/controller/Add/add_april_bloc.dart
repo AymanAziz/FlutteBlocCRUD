@@ -14,7 +14,7 @@ class AddAprilBloc extends Bloc<AddAprilEvent, AddAprilState> {
     final AprilIndexProvider aprilIndexProvider = AprilIndexProvider();
 
     on<InsertAprilData>((event, emit) async {
-     await aprilIndexProvider.savedata(event.aprilModel);
+     await aprilIndexProvider.saveData(event.aprilModel);
     });
   }
 }

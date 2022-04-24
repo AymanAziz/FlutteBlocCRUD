@@ -58,4 +58,27 @@ class aprilDatabase {
 
     throw Exception('ID not found');
   }
+
+  //update april data
+  Future<int> update(AprilModel aprilModel) async {
+    Database db = await instance.database;
+
+    return db.update(
+      'April',
+      aprilModel.toJson(),
+      where: 'id = ?',
+      whereArgs: [aprilModel.id],
+    );
+  }
+
+  //delete april data
+  Future<int> delete(int id) async {
+    Database db = await instance.database;
+
+    return db.delete(
+      'April',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }
