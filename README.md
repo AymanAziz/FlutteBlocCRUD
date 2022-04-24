@@ -1,6 +1,6 @@
 # testaapril
 
-A new Flutter project.
+this is the flutter CRUD operation using SQFite (SQLITE) with bloc architecture 
 
 ## Getting Started
 
