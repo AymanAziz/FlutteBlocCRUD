@@ -17,7 +17,8 @@ class AddPage extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.blueAccent,
+            title:const Text('add April Data'),
           ),
           body: GestureDetector(
             onTap: (){

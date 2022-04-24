@@ -26,7 +26,8 @@ class _UpdatePageState extends State<UpdatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.blueAccent,
+        title: const Text('Update April Data'),
       ),
       body: GestureDetector(
           onTap: () {
