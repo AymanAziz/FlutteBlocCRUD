@@ -62,11 +62,11 @@ class AddAdminPage extends StatelessWidget {
                                 controller: _age,
                                 decoration: const InputDecoration(
                                   border: UnderlineInputBorder(),
-                                  labelText: 'Enter Day',
+                                  labelText: 'Enter age',
                                 ),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Please select a day';
+                                    return 'Please select a age';
                                   }
                                   return null;
                                 },

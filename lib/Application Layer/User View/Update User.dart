@@ -13,7 +13,7 @@ class UpdateUserPage extends StatefulWidget {
 class _UpdateUserPageState extends State<UpdateUserPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _name = TextEditingController();
-  TextEditingController _day = TextEditingController();
+  TextEditingController _age = TextEditingController();
   final UserBloc userBloc = UserBloc();
 
   @override
@@ -25,7 +25,7 @@ class _UpdateUserPageState extends State<UpdateUserPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-        title: const Text('Update April Data'),
+        title: const Text('Update User Data'),
       ),
       body: GestureDetector(
           onTap: () {
@@ -46,7 +46,7 @@ class _UpdateUserPageState extends State<UpdateUserPage> {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is UpdateUserLoad) {
                     _name.text = state.userModel.name;
-                    _day.text = state.userModel.age.toString();
+                    _age.text = state.userModel.age.toString();
 
 
                     return ListView(
@@ -80,14 +80,14 @@ class _UpdateUserPageState extends State<UpdateUserPage> {
                                           height: 20,
                                         ),
                                         TextFormField(
-                                          controller: _day,
+                                          controller: _age,
                                           decoration: const InputDecoration(
                                             border: UnderlineInputBorder(),
-                                            labelText: 'Enter your name',
+                                            labelText: 'Enter your age',
                                           ),
                                           validator: (value) {
                                             if (value == null || value.isEmpty) {
-                                              return 'Please select a day';
+                                              return 'Please select a age';
                                             }
                                             return null;
                                           },
@@ -104,7 +104,7 @@ class _UpdateUserPageState extends State<UpdateUserPage> {
                                                 UserModel userModel = UserModel(
                                                     id: id,
                                                     name: _name.text,
-                                                    age: int.parse(_day.text));
+                                                    age: int.parse(_age.text));
 
                                                 //update to bloc
                                                 userBloc.add(UpdateUserData(userModel));

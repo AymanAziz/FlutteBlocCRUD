@@ -25,7 +25,7 @@ class _UpdateUserPageState extends State<UpdateAdminPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-        title: const Text('Update April Data'),
+        title: const Text('Update Admin Data'),
       ),
       body: GestureDetector(
           onTap: () {
@@ -83,7 +83,7 @@ class _UpdateUserPageState extends State<UpdateAdminPage> {
                                       controller: _age,
                                       decoration: const InputDecoration(
                                         border: UnderlineInputBorder(),
-                                        labelText: 'Enter your name',
+                                        labelText: 'Enter age',
                                       ),
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
